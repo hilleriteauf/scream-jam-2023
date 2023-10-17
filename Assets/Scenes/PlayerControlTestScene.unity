@@ -1386,7 +1386,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 1597595759}
-  speed: 12
+  walkingSpeed: 12
+  dashDuration: 0.25
+  dashSpeed: 32
 --- !u!1 &1871062424
 GameObject:
   m_ObjectHideFlags: 0
