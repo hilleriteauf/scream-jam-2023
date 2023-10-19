@@ -2,12 +2,18 @@ using Assets.Scripts.Enemy;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class NewBehaviourScript : MonoBehaviour
+public class EnemyPatrollingController : MonoBehaviour
 {
 
     public NavMeshAgent agent;
 
     public Path path;
+
+    public float Speed = 3.5f;
+    public float AngularSpeed = 120f;
+    public float Acceleration = 8f;
+
+    public bool IsPatrolling { get; private set; } = false;
 
     private PathNode targetNode = null;
     private float nodeReachedTime = 0f;
@@ -15,14 +21,13 @@ public class NewBehaviourScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        targetNode = path.GetNextNode(null);
-        agent.SetDestination(targetNode.Position);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (targetNode == null)
+        if (IsPatrolling == false || targetNode == null)
         {
             return;
         }
@@ -58,5 +63,28 @@ public class NewBehaviourScript : MonoBehaviour
                 agent.SetDestination(targetNode.Position);
             }
         }
+    }
+
+    public void StartPatrolling()
+    {
+        // Set the nav mesh agent parameters
+        agent.acceleration = Acceleration;
+        agent.speed = Speed;
+        agent.angularSpeed = AngularSpeed;
+
+        // Start patrolling
+        IsPatrolling = true;
+
+        if (targetNode == null)
+        {
+            targetNode = path.GetNextNode(targetNode);
+        }
+        agent.SetDestination(targetNode.Position);
+    }
+
+    public void StopPatrolling()
+    {
+        IsPatrolling = false;
+        agent.ResetPath();
     }
 }
