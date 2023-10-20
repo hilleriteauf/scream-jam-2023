@@ -7330,6 +7330,7 @@ MonoBehaviour:
   Speed: 7
   AngularSpeed: 360
   Acceleration: 8
+  DirectionEvaluationResolution: 45
 --- !u!114 &1897804967
 MonoBehaviour:
   m_ObjectHideFlags: 0

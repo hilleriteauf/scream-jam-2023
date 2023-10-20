@@ -75,7 +75,7 @@ public class EnemyVision : MonoBehaviour
                 }
 
                 LastSeenRotation = Quaternion.LookRotation(direction);
-                Debug.DrawRay(LastSeenPosition, LastSeenRotation * Vector3.forward * 10, Color.red, 5f);
+                //Debug.DrawRay(LastSeenPosition, LastSeenRotation * Vector3.forward * 10, Color.red, 5f);
                 return true;
             }
         }
