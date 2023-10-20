@@ -212,6 +212,8 @@ GameObject:
   - component: {fileID: 4220943562034382182}
   - component: {fileID: 3657089544686896775}
   - component: {fileID: 2985573537198448620}
+  - component: {fileID: 3615559088650728239}
+  - component: {fileID: 6759396336681124441}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -272,6 +274,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 4502927771545669863}
   path: {fileID: 4539817039652562386}
+  Speed: 3.5
+  AngularSpeed: 120
+  Acceleration: 8
 --- !u!136 &3657089544686896775
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -308,6 +313,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FieldOfViewAngle: 110
+--- !u!114 &3615559088650728239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6138570411737700443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 173f2c642b7f4564383b1bbcf09b061c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemyVision: {fileID: 2985573537198448620}
+  EnemyPatrol: {fileID: 4220943562034382182}
+  EnemyChasingController: {fileID: 6759396336681124441}
+--- !u!114 &6759396336681124441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6138570411737700443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef56553c299411d4bb28c001485bf073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemyVision: {fileID: 2985573537198448620}
+  EnemyController: {fileID: 3615559088650728239}
+  Agent: {fileID: 4502927771545669863}
+  ScreamingShakingDuration: 1
+  ScreamingShakingIntensity: 10
+  ScreamingShakingSpeed: 50
+  Speed: 7
+  ChasingAngularSpeed: 360
+  Acceleration: 8
+  PostLookingToLastSeenDirectionPause: 1
+  LookingAroundIterationNumber: 3
+  DirectionEvaluationResolution: 45
+  PostLookingAroundPause: 1
+  LookingAroundAngularSpeed: 180
 --- !u!1 &6896470700093849741
 GameObject:
   m_ObjectHideFlags: 0
