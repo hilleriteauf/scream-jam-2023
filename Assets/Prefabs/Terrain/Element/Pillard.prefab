@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8137273414580444404}
   - component: {fileID: 7754926864790762722}
   m_Layer: 0
-  m_Name: Pillier
+  m_Name: Pillard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
