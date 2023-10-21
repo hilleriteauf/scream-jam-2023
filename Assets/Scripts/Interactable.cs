@@ -11,9 +11,15 @@ public class Interactable : MonoBehaviour
 
     [Tooltip("The script that will be notified when the player interacts with this object. The provided script must implement the IINteractionListener interface.")]
     public MonoBehaviour interactionListenerMono;
+
+    public Shader InteractableShader;
+
+    public float OutlineScale = 1.05f;
+
     private IInteractionListener interactionListener;
 
     private bool InPlayerFocus = false;
+    private Material material;
 
     void OnValidate()
     {
@@ -29,9 +35,19 @@ public class Interactable : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        Material[] materials = GetComponent<MeshRenderer>().materials;
+
+        for (int i = 0; i < materials.Length; i++)
+        {
+            Debug.Log("Material: " + materials[i].shader.name + " vs " + InteractableShader.name);
+            if (materials[i].shader.name == InteractableShader.name)
+            {
+                material = materials[i];
+                break;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -52,11 +68,11 @@ public class Interactable : MonoBehaviour
 
         if (inPlayerFocus)
         {
-            meshRenderer.material.color = Color.blue;
+            material.SetFloat("_Scale", OutlineScale);
         }
         else
         {
-            meshRenderer.material.color = Color.white;
+            material.SetFloat("_Scale", 0.0f);
         }
     }
 }
