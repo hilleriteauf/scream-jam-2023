@@ -72,6 +72,11 @@ public class PlayerInteraction : MonoBehaviour
             bestInteractable.SetInPlayerFocus(true);
         }
 
+        if ((bestInteractable == null) != (currentInteractable == null))
+        {
+            FindObjectOfType<InteractKeyUI>().IsVisible = bestInteractable != null;
+        }
+
         currentInteractable = bestInteractable;
     }
 }

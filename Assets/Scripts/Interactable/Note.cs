@@ -12,8 +12,7 @@ public class Note : MonoBehaviour, Interactable.IInteractionListener
     NoteUI noteUI;
     PlayerInteraction playerInteraction;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         noteUI = FindObjectOfType<NoteUI>();
         playerInteraction = FindObjectOfType<PlayerInteraction>();
