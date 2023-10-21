@@ -7,6 +7,17 @@ public class PlayerInteraction : MonoBehaviour
     public float distanceThreshold = 3.0f;
     public float angleThreshold = 30.0f;
 
+    private bool _canInteract = true;
+    public bool CanInteract {
+        get {
+            return _canInteract && canInteractChangedTime != Time.time;
+        } set {
+            canInteractChangedTime = Time.time;
+            _canInteract = value;
+        }
+    }
+    private float canInteractChangedTime = 0f;
+
     private Interactable currentInteractable = null;
 
     // Start is called before the first frame update
@@ -18,23 +29,36 @@ public class PlayerInteraction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        RefreshCurrentInteractable();
+
+        if (CanInteract && currentInteractable != null && Input.GetKeyUp(KeyCode.E))
+        {
+            currentInteractable.OnInteract();
+        }
+    }
+
+    void RefreshCurrentInteractable()
+    {
         List<Interactable> interactables = new List<Interactable>(FindObjectsOfType<Interactable>());
 
         float bestAngle = angleThreshold;
         Interactable bestInteractable = null;
 
-        foreach (Interactable interactable in interactables)
+        if (CanInteract)
         {
-            Vector3 direction = interactable.transform.position - transform.position;
-            float distance = direction.magnitude;
-            direction.Normalize();
-
-            float angle = Vector3.Angle(transform.forward, direction);
-
-            if (interactable.IsInteractable && distance < distanceThreshold && angle < angleThreshold && angle < bestAngle)
+            foreach (Interactable interactable in interactables)
             {
-                bestAngle = angle;
-                bestInteractable = interactable;
+                Vector3 direction = interactable.transform.position - transform.position;
+                float distance = direction.magnitude;
+                direction.Normalize();
+
+                float angle = Vector3.Angle(transform.forward, direction);
+
+                if (interactable.IsInteractable && distance < distanceThreshold && angle < angleThreshold && angle < bestAngle)
+                {
+                    bestAngle = angle;
+                    bestInteractable = interactable;
+                }
             }
         }
 

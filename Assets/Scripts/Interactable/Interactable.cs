@@ -54,12 +54,14 @@ public class Interactable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (InPlayerFocus && Input.GetKeyDown(KeyCode.E))
+
+    }
+
+    public void OnInteract()
+    {
+        if (interactionListener != null)
         {
-            if (interactionListener != null)
-            {
-                interactionListener.OnInteract();
-            }
+            interactionListener.OnInteract();
         }
     }
 
