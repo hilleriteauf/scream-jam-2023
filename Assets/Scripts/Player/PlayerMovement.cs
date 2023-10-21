@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -10,13 +11,16 @@ public class PlayerMovement : MonoBehaviour
     public float dashDuration = 0.25f;
     public float dashSpeed = 32f;
 
+    public AudioSource playeraudio;
+    public AudioClip woodwalk;
+    bool IsMoving = false;
 
     private float lastDash = 0f;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        playeraudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -43,5 +47,22 @@ public class PlayerMovement : MonoBehaviour
 
         controller.Move(move * speed * Time.deltaTime); // Move the player
         
+    }
+
+    private void FixedUpdate(){
+        if (controller.velocity.magnitude > 0){
+            IsMoving = true;
+            Console.WriteLine("Moving");
+        }
+        else{
+            IsMoving = false;
+        }
+        if (IsMoving){
+            if (!playeraudio.isPlaying)
+                playeraudio.Play();
+        }
+        else {
+            playeraudio.Stop();
+        }
     }
 }
