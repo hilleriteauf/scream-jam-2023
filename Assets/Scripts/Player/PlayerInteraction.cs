@@ -31,7 +31,7 @@ public class PlayerInteraction : MonoBehaviour
 
             float angle = Vector3.Angle(transform.forward, direction);
 
-            if (distance < distanceThreshold && angle < angleThreshold && angle < bestAngle)
+            if (interactable.IsInteractable && distance < distanceThreshold && angle < angleThreshold && angle < bestAngle)
             {
                 bestAngle = angle;
                 bestInteractable = interactable;

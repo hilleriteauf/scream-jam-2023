@@ -16,6 +16,8 @@ public class Interactable : MonoBehaviour
 
     public float OutlineScale = 1.05f;
 
+    public bool IsInteractable = true;
+
     private IInteractionListener interactionListener;
 
     private bool InPlayerFocus = false;
@@ -52,7 +54,13 @@ public class Interactable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (InPlayerFocus && Input.GetKeyDown(KeyCode.E))
+        {
+            if (interactionListener != null)
+            {
+                interactionListener.OnInteract();
+            }
+        }
     }
 
     public void SetInPlayerFocus(bool inPlayerFocus)
