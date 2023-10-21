@@ -9,6 +9,8 @@ public class Note : MonoBehaviour, Interactable.IInteractionListener
 
     private bool noteOpened = false;
 
+    private float lastOpenTime = 0f;
+
     NoteUI noteUI;
     PlayerInteraction playerInteraction;
 
@@ -26,8 +28,11 @@ public class Note : MonoBehaviour, Interactable.IInteractionListener
             return;
         }
 
-        if ((Input.GetKeyUp(KeyCode.Escape) || Input.GetKeyUp(KeyCode.E)))
+        // We make sure the note has not been opened in the current frame
+        // Otherwise we might catch the key press that opened the note
+        if (Time.time != lastOpenTime && (Input.GetKeyUp(KeyCode.Escape) || Input.GetKeyUp(KeyCode.E)))
         {
+            Debug.Log("Closing note because of key press");
             CloseNote();   
         }
 
@@ -35,6 +40,7 @@ public class Note : MonoBehaviour, Interactable.IInteractionListener
         float distance = Vector3.Distance(transform.position, playerInteraction.transform.position);
         if (distance >= playerInteraction.distanceThreshold * 1.5f)
         {
+            Debug.Log("Closing note because of distance");
             CloseNote();
         }
     }
@@ -50,8 +56,11 @@ public class Note : MonoBehaviour, Interactable.IInteractionListener
     }
     public void OnInteract()
     {
+        Debug.Log("noteUI is null: " + (noteUI == null).ToString());
         if (noteUI != null)
         {
+            Debug.Log("Note.OnInteract()");
+            lastOpenTime = Time.time;
             playerInteraction.CanInteract = false;
             noteOpened = true;
             noteUI.Display(noteContent);

@@ -10,6 +10,8 @@ public class PlayerInteraction : MonoBehaviour
     private bool _canInteract = true;
     public bool CanInteract {
         get {
+            // We return false if the value was changed in the current frame
+            // To avoid catching the key press that changed the value twice
             return _canInteract && canInteractChangedTime != Time.time;
         } set {
             canInteractChangedTime = Time.time;

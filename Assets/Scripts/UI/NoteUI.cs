@@ -22,12 +22,14 @@ public class NoteUI : MonoBehaviour
 
     public void Display(string text)
     {
+        Debug.Log("NoteUI.Display()");
         noteText.text = text;
         noteBackground.SetActive(true);
     }
 
     public void Hide()
     {
+        Debug.Log("NoteUI.Hide()");
         noteBackground.SetActive(false);
     }
 }
