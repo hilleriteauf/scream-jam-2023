@@ -41,7 +41,6 @@ public class Interactable : MonoBehaviour
 
         for (int i = 0; i < materials.Length; i++)
         {
-            Debug.Log("Material: " + materials[i].shader.name + " vs " + InteractableShader.name);
             if (materials[i].shader.name == InteractableShader.name)
             {
                 material = materials[i];
