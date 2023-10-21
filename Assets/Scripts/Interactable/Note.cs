@@ -22,7 +22,12 @@ public class Note : MonoBehaviour, Interactable.IInteractionListener
     // Update is called once per frame
     void Update()
     {
-        if (noteOpened && (Input.GetKeyUp(KeyCode.Escape) || Input.GetKeyUp(KeyCode.E)))
+        if (!noteOpened)
+        {
+            return;
+        }
+
+        if ((Input.GetKeyUp(KeyCode.Escape) || Input.GetKeyUp(KeyCode.E)))
         {
             CloseNote();   
         }
