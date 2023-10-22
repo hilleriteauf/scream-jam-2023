@@ -85,6 +85,10 @@ namespace Assets.Scripts.Enemy
         public void StopChasing()
         {
             step = Step.Disabled;
+            if (Agent.enabled)
+            {
+                Agent.ResetPath();
+            }
             EnemyController.ChaseEnded();
         }
 
@@ -98,7 +102,7 @@ namespace Assets.Scripts.Enemy
         void Update()
         {
 
-            Debug.Log("Step: " + step.ToString());
+            //Debug.Log("Step: " + step.ToString());
 
             if (!Enabled)
             {
@@ -335,7 +339,9 @@ namespace Assets.Scripts.Enemy
         {
             if (Time.time - stepStartTime > KillingShakingDuration)
             {
-                // We finished screaming before killing
+                PlayerLife playerLife = FindObjectOfType<PlayerLife>();
+                playerLife.KillAnimationEnd();
+                step = Step.Disabled;
                 return;
             }
 

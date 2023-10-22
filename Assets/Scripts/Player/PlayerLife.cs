@@ -1,6 +1,8 @@
 ﻿using Assets.Scripts.Enemy;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts.Player
 {
@@ -15,6 +17,8 @@ namespace Assets.Scripts.Player
         public float killingAnimationAngularVelocity = 360f;
 
         public float Health { get; private set; } = 1f;
+
+        public string MenuSceneName;
 
         // Seconds left before the player dies
         public float RemainingTime
@@ -83,6 +87,23 @@ namespace Assets.Scripts.Player
 
             killingAnimation = true;
             enemyKillingPlayer = enemy;
+        }
+
+        public void KillAnimationEnd()
+        {
+            BlackScreenUI blackScreenUI = FindObjectOfType<BlackScreenUI>();
+            blackScreenUI.Display(new List<string> { "Game Over" }, new List<float> { 2f }, false, true, () => { SceneManager.LoadScene(MenuSceneName); return null; });
+
+            DisableAllEnemies();
+        }
+
+        public void DisableAllEnemies()
+        {
+            EnemyController[] enemies = FindObjectsOfType<EnemyController>();
+            foreach (EnemyController enemy in enemies)
+            {
+                enemy.DisableEnemy();
+            }
         }
     }
 }

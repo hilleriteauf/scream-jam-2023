@@ -85,6 +85,9 @@ public class EnemyPatrollingController : MonoBehaviour
     public void StopPatrolling()
     {
         IsPatrolling = false;
-        agent.ResetPath();
+        if (agent.enabled)
+        {
+            agent.ResetPath();
+        }
     }
 }

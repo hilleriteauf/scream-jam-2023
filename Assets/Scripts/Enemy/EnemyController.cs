@@ -2,6 +2,7 @@ using Assets.Scripts.Enemy;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class EnemyController : MonoBehaviour
     public EnemyPatrollingController EnemyPatrol;
 
     public EnemyChasingController EnemyChasingController;
+
+    private bool isEnabled = true;
 
     // Start is called before the first frame update
     void Start()
@@ -20,8 +23,9 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!EnemyChasingController.Enabled && EnemyVision.PlayerInSight)
+        if (isEnabled && !EnemyChasingController.Enabled && EnemyVision.PlayerInSight)
         {
+            Debug.Log("Player in sight, starting chase");
             EnemyPatrol.StopPatrolling();
             EnemyChasingController.StartChasing();
         }
@@ -31,6 +35,17 @@ public class EnemyController : MonoBehaviour
     public void ChaseEnded()
     {
         // The enemy restarts its patrol
-        EnemyPatrol.StartPatrolling();
+        if (isEnabled)
+        {
+            EnemyPatrol.StartPatrolling();
+        }
+    }
+
+    public void DisableEnemy()
+    {
+        Debug.Log("Enemy disabled");
+        isEnabled = false;
+        EnemyPatrol.StopPatrolling();
+        EnemyChasingController.StopChasing();
     }
 }
