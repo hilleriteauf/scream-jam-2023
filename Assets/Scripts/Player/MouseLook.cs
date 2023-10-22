@@ -12,6 +12,7 @@ public class MouseLook : MonoBehaviour
     public Transform playerBody;
 
     public GameObject torch;
+    public GameObject torchPrefab;
     public AudioSource playeraudio;
     public AudioClip[] playeraudioClips;
     public float rotationSpeedHighTreshold = 25f;
@@ -52,7 +53,7 @@ public class MouseLook : MonoBehaviour
         }
         if (Input.GetKey("f"))
         {
-                prepareThrow = true;
+            prepareThrow = true;
         }
         if (Input.GetKeyUp("f"))
         {
@@ -64,23 +65,41 @@ public class MouseLook : MonoBehaviour
                 torch.GetComponent<Rigidbody>().useGravity = true;
                 prepareThrow = false;
                 throwCharge = 0f;
+                torch.GetComponent<Interactable>().IsInteractable = true;
+                this.playeraudio = null;
+                this.GetComponentInParent<PlayerInteraction>().torchCounterText.GetComponent<TMP_Text>().text = (int.Parse(this.GetComponentInParent<PlayerInteraction>().torchCounterText.GetComponent<TMP_Text>().text)-1).ToString();
                 torch.transform.parent = null;
                 torch = null;
+                // if (int.Parse(this.GetComponentInParent<PlayerInteraction>().torchCounterText.GetComponent<TMP_Text>().text) != 0)
+                // {
+                //     torch = Instantiate(torchPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+                //     torch.transform.parent = transform;
+                //     torch.GetComponent<Rigidbody>().useGravity = false;
+                //     torch.GetComponent<Interactable>().IsInteractable = false;
+                //     torch.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                //     torch.GetComponent<TorchInteract>().PlayerCamera = this.GetComponent<Camera>();
+                //     torch.GetComponent<TorchInteract>().Player = this.transform.parent.gameObject;
+                //     torch.GetComponent<TorchInteract>().torchPickUpPoint = this.transform.parent.gameObject.transform.Find("TorchPickUpPoint");
+                //     torch.transform.position = torch.GetComponent<TorchInteract>().torchPickUpPoint.transform.position;
+                //     torch.transform.rotation = torch.GetComponent<TorchInteract>().torchPickUpPoint.transform.rotation;
+                // }
             }
         }
 
         // Playing a sound when the rotation speed is high enough
-        if (Mathf.Abs(mouseX) > rotationSpeedHighTreshold || Mathf.Abs(mouseY) > rotationSpeedHighTreshold)
+        if (playeraudio != null)
         {
-            Debug.Log(Mathf.Abs(mouseX));
-            Debug.Log(Mathf.Abs(mouseY));
-            if (!istriggered) {
-                istriggered = true;
-                playeraudio.PlayOneShot(playeraudioClips[Random.Range(0, playeraudioClips.Length)]);
+            if (Mathf.Abs(mouseX) > rotationSpeedHighTreshold || Mathf.Abs(mouseY) > rotationSpeedHighTreshold)
+            {
+                Debug.Log(Mathf.Abs(mouseX));
+                Debug.Log(Mathf.Abs(mouseY));
+                if (!istriggered) {
+                    istriggered = true;
+                    playeraudio.PlayOneShot(playeraudioClips[Random.Range(0, playeraudioClips.Length)]);
+                }
+            } else if (Mathf.Abs(mouseX) < rotationSpeedDownTreshold && Mathf.Abs(mouseY) < rotationSpeedDownTreshold) {
+                istriggered = false;
             }
-        } else if (Mathf.Abs(mouseX) < rotationSpeedDownTreshold && Mathf.Abs(mouseY) < rotationSpeedDownTreshold) {
-            istriggered = false;
         }
-
     }
 }
