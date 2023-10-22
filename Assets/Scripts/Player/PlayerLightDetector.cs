@@ -24,8 +24,27 @@ public class PlayerLightDetector : MonoBehaviour
         }
     }
 
+    private bool getInSafeZone()
+    {
+        Safezone[] safezones = FindObjectsOfType<Safezone>();
+        foreach (Safezone safezone in safezones)
+        {
+            if (safezone.Collider.bounds.Contains(transform.position))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     private bool getInLight()
     {
+        if (getInSafeZone())
+        {
+            return false;
+        }
+
         // Loop over all the lights in the scene
         foreach (Light light in FindObjectsOfType<Light>())
         {
