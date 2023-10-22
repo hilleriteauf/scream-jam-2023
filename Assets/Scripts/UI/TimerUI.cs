@@ -1,26 +1,26 @@
+using Assets.Scripts.Player;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Timer : MonoBehaviour
+public class TimerUI : MonoBehaviour
 {
 
     public TextMeshProUGUI timerText;
 
-    public float timerDuration = 25 * 60f;
+    private PlayerLife playerLife;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        playerLife = FindObjectOfType<PlayerLife>();        
     }
 
     // Update is called once per frame
     void Update()
     {
-        timerText.text = FormatTime(timerDuration - Time.time);
+        timerText.text = FormatTime(playerLife.RemainingTime);
     }
 
     string FormatTime(float time)

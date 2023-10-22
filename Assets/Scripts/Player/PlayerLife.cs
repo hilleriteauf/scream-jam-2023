@@ -8,9 +8,26 @@ namespace Assets.Scripts.Player
 
         public float lifeExpectancyOutsideSafezone = 60f * 5f;
 
-        public float life { get; private set; } = 1f;
+        public float timerDuration = 60f * 25;
+        public float timerStartTime = 0f;
+
+        public float Health { get; private set; } = 1f;
+
+        // Seconds left before the player dies
+        public float RemainingTime
+        {
+            get
+            {
+                return timerDuration - (Time.time - timerStartTime);
+            }
+        }
 
         private PlayerSafezoneDetector safezoneDetector;
+
+        private void OnEnable()
+        {
+            timerStartTime = Time.time;
+        }
 
         void Awake()
         {
@@ -22,10 +39,10 @@ namespace Assets.Scripts.Player
         {
             if (safezoneDetector.IsInSafezone)
             {
-                life = 1f;
+                Health = 1f;
             } else
             {
-                life -= Time.deltaTime / lifeExpectancyOutsideSafezone;
+                Health -= Time.deltaTime / lifeExpectancyOutsideSafezone;
             }
         }
     }
