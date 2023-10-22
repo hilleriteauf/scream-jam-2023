@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,20 +26,17 @@ public class Interactable : MonoBehaviour
 
     void OnValidate()
     {
-        if (interactionListenerMono is IInteractionListener)
-        {
-            interactionListener = (IInteractionListener)interactionListenerMono;
-        }
-        else
+        if (!(interactionListenerMono is IInteractionListener))
         {
             interactionListenerMono = null;
-            interactionListener = null;
         }
     }
 
     // Start is called before the first frame update
     void Awake()
     {
+        interactionListener = (IInteractionListener)interactionListenerMono;
+
         Material[] materials = GetComponent<MeshRenderer>().materials;
 
         for (int i = 0; i < materials.Length; i++)
