@@ -7,10 +7,11 @@ public class PlayerLightDetector : MonoBehaviour
 
     public bool IsInLight { get; private set; } = false;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    private PlayerSafezoneDetector safezoneDetector;
 
+    void Awake()
+    {
+        safezoneDetector = GetComponent<PlayerSafezoneDetector>();
     }
 
     // Update is called once per frame
@@ -26,6 +27,11 @@ public class PlayerLightDetector : MonoBehaviour
 
     private bool getInLight()
     {
+        if (safezoneDetector.IsInSafezone)
+        {
+            return false;
+        }
+
         // Loop over all the lights in the scene
         foreach (Light light in FindObjectsOfType<Light>())
         {

@@ -6,9 +6,7 @@ public class Interactable : MonoBehaviour
 {
     public interface IInteractionListener
     {
-        void OnInteract() {
-            Debug.Log("Interact");
-        }
+        void OnInteract(Interactable interactable);
     }
 
     [Tooltip("The script that will be notified when the player interacts with this object. The provided script must implement the IINteractionListener interface.")]
@@ -63,7 +61,7 @@ public class Interactable : MonoBehaviour
     {
         if (interactionListener != null)
         {
-            interactionListener.OnInteract();
+            interactionListener.OnInteract(this);
         }
     }
 
