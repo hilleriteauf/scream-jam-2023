@@ -354,6 +354,11 @@ MonoBehaviour:
   DirectionEvaluationResolution: 45
   PostLookingAroundPause: 1
   LookingAroundAngularSpeed: 180
+  KillingDistance: 1.5
+  KillingShakingDuration: 1
+  KillingShakingIntensity: 10
+  KillingShakingSpeed: 50
+  HeadHeight: 0.3
 --- !u!1 &6896470700093849741
 GameObject:
   m_ObjectHideFlags: 0

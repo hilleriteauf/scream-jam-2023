@@ -296,6 +296,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeExpectancyOutsideSafezone: 300
+  timerDuration: 1500
+  timerStartTime: 0
+  killingAnimationAngularVelocity: 1440
 --- !u!1 &6493481164175958029
 GameObject:
   m_ObjectHideFlags: 0
