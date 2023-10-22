@@ -13074,7 +13074,7 @@ PrefabInstance:
       value: "Ah, I've had enough of searching for this cursed lever. I only have
         one left to activate, and finally, I'll be able to find you. I'm so eager!
         I wonder what lies behind that door, I'll soon uncover it. I'm on my way,
-        Jade.\r"
+        Jade\r\r"
       objectReference: {fileID: 0}
     - target: {fileID: 7686440795489971551, guid: ab0120eb1420f8f4d9456ac53db694a9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -45842,11 +45842,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7509223220056900425, guid: ab0120eb1420f8f4d9456ac53db694a9, type: 3}
       propertyPath: noteContent
-      value: 'The last encounter with that monster left me sweating, and I was fortunate
-        to have taken a big step forward, but it''s truly exhausting. I''m terrifie,
-        but for you, I must persevere. Hold on, I''m on my way.
-
-'
+      value: The last encounter with that monster left me sweating, and I was fortunate
+        to have taken a big step forward, but it's truly exhausting. I'm terrifie,
+        but for you, I must persevere. Hold on, I'm on my way.
       objectReference: {fileID: 0}
     - target: {fileID: 7686440795489971551, guid: ab0120eb1420f8f4d9456ac53db694a9, type: 3}
       propertyPath: m_LocalPosition.x
