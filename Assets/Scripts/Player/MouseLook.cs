@@ -111,8 +111,8 @@ public class MouseLook : MonoBehaviour
         torch.GetComponent<Rigidbody>().velocity = Vector3.zero;
         torch.GetComponent<TorchInteract>().Player = this.GetComponent<Camera>().gameObject;
         torch.GetComponent<TorchInteract>().torchPickUpPoint = GameObject.Find("TorchPickUpPoint").transform;
+        torch.transform.parent = transform;
         torch.transform.localPosition = torch.GetComponent<TorchInteract>().torchPickUpPoint.transform.localPosition;
         torch.transform.localRotation = torch.GetComponent<TorchInteract>().torchPickUpPoint.transform.localRotation;
-        torch.transform.parent = transform;
     }
 }
