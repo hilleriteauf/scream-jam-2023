@@ -189,6 +189,8 @@ GameObject:
   - component: {fileID: 5113593644149321192}
   - component: {fileID: 8379018454853248404}
   - component: {fileID: 3925911182384942332}
+  - component: {fileID: 5686503460064352050}
+  - component: {fileID: 4134248626721510773}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -269,6 +271,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45368c240473747448213de906afee29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5686503460064352050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3951641764576117865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c766814950dd39468168e7105eb722d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4134248626721510773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3951641764576117865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2773446f560d1d345af3867bb2c78eb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeExpectancyOutsideSafezone: 300
+  timerDuration: 1500
+  timerStartTime: 0
+  killingAnimationAngularVelocity: 1440
 --- !u!1 &6493481164175958029
 GameObject:
   m_ObjectHideFlags: 0

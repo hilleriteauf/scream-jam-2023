@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.Player;
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
@@ -36,6 +37,15 @@ namespace Assets.Scripts.Enemy
         public int DirectionEvaluationResolution = 45;
         public float PostLookingAroundPause = 1f;
         public float LookingAroundAngularSpeed = 50f;
+
+        [Header("Killing Settings")]
+
+        public float KillingDistance = 1.5f;
+        public float KillingShakingDuration = 1f;
+        public float KillingShakingIntensity = 10f;
+        public float KillingShakingSpeed = 50f;
+        [Tooltip("The height of the enemy's head, it will be used to make the player look at the enemy when he kills him")]
+        public float HeadHeight = 0.5f;
 
         public bool Enabled { get { return step != Step.Disabled; } }
 
@@ -87,13 +97,16 @@ namespace Assets.Scripts.Enemy
         // Update is called once per frame
         void Update()
         {
+
+            Debug.Log("Step: " + step.ToString());
+
             if (!Enabled)
             {
                 return;
             }
 
             // If the player is in sight, and we are chasing or investigating, we resume chasing with the new position of the player
-            if (EnemyVision.GetPlayerInSight() && step >= Step.Chasing)
+            if (EnemyVision.PlayerInSight && step >= Step.Chasing && step < Step.Killing)
             {
                 // We don't want to pause when resuming chasing
                 StartChasingStep();
@@ -112,6 +125,9 @@ namespace Assets.Scripts.Enemy
                     break;
                 case Step.LookingAround:
                     UpdateLookingAround();
+                    break;
+                case Step.Killing:
+                    UpdateKilling();
                     break;
             }
         }
@@ -140,6 +156,20 @@ namespace Assets.Scripts.Enemy
 
         private void UpdateChasing()
         {
+
+            float distanceToTarget = Vector3.Distance(transform.position, EnemyVision.LastSeenPosition);
+
+            Debug.Log("Distance to target : " + distanceToTarget);
+            
+            if (EnemyVision.PlayerInSight && distanceToTarget < KillingDistance)
+            {
+                // We reached the player, start killing
+
+                StartKilling();
+
+                return;
+            }
+
             if (EnemyVision.PlayerInSight)
             {
                 // Direction to player
@@ -292,6 +322,30 @@ namespace Assets.Scripts.Enemy
             //Debug.DrawRay(transform.position, lookingAroundRotationTarget * Vector3.forward * 10, Color.green, 5f);
         }
 
+        private void StartKilling()
+        {
+            step = Step.Killing;
+            Agent.enabled = false;
+
+            PlayerLife playerLife = FindObjectOfType<PlayerLife>();
+            playerLife.KillAnimationStart(this);
+        }
+
+        private void UpdateKilling()
+        {
+            if (Time.time - stepStartTime > KillingShakingDuration)
+            {
+                // We finished screaming before killing
+                return;
+            }
+
+            Vector3 directionToTarget = EnemyVision.LastSeenPosition - transform.position;
+            directionToTarget.y = 0f;
+            Quaternion rotationToTarget = Quaternion.LookRotation(directionToTarget);
+            float animationAngle = KillingShakingIntensity * Mathf.Sin((Time.time - stepStartTime) * KillingShakingSpeed);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, rotationToTarget * Quaternion.Euler(0f, animationAngle, 0f), Agent.angularSpeed * Time.deltaTime);
+        }
+
         // Different steps of the chasing behaviour
         private enum Step
         {
@@ -300,6 +354,7 @@ namespace Assets.Scripts.Enemy
             Chasing,
             LookingToLastSeenDirection,
             LookingAround,
+            Killing,
         }
     }
 }

@@ -20,7 +20,7 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!EnemyChasingController.Enabled && EnemyVision.GetPlayerInSight())
+        if (!EnemyChasingController.Enabled && EnemyVision.PlayerInSight)
         {
             EnemyPatrol.StopPatrolling();
             EnemyChasingController.StartChasing();
