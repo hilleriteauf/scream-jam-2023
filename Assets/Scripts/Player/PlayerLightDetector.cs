@@ -7,10 +7,11 @@ public class PlayerLightDetector : MonoBehaviour
 
     public bool IsInLight { get; private set; } = false;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    private PlayerSafezoneDetector safezoneDetector;
 
+    void Awake()
+    {
+        safezoneDetector = GetComponent<PlayerSafezoneDetector>();
     }
 
     // Update is called once per frame
@@ -24,23 +25,9 @@ public class PlayerLightDetector : MonoBehaviour
         }
     }
 
-    private bool getInSafeZone()
-    {
-        Safezone[] safezones = FindObjectsOfType<Safezone>();
-        foreach (Safezone safezone in safezones)
-        {
-            if (safezone.Collider.bounds.Contains(transform.position))
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
     private bool getInLight()
     {
-        if (getInSafeZone())
+        if (safezoneDetector.IsInSafezone)
         {
             return false;
         }

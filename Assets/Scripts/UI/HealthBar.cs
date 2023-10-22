@@ -1,3 +1,4 @@
+using Assets.Scripts.Player;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,21 +8,16 @@ public class HealthBar : MonoBehaviour
 {
     public Slider slider;
 
-    // Start is called before the first frame update
-    void Start()
+    private PlayerLife playerLife;
+
+    void Awake()
     {
-        
+        playerLife = FindObjectOfType<PlayerLife>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    // Sets the slider value, from 0 to 1
-    public void SetValue(float value)
-    {
-        slider.value = value;
+        slider.value = playerLife.life;
     }
 }
