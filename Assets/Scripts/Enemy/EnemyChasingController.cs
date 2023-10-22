@@ -27,7 +27,7 @@ namespace Assets.Scripts.Enemy
         public float Acceleration = 8f;
 
         [Header("Looking To Last Seen Direction Settings")]
-        public float PostLookingToLastSeenDirectionPause = 0.5f;
+        public float PostLookingToLastSeenDirectionPause = 0f;
 
         [Header("Looking Around Settings")]
 
@@ -140,6 +140,15 @@ namespace Assets.Scripts.Enemy
 
         private void UpdateChasing()
         {
+            if (EnemyVision.PlayerInSight)
+            {
+                // Direction to player
+                Vector3 directionToTarget = playerLightDetector.transform.position - transform.position;
+                directionToTarget.y = 0f;
+                Quaternion rotationToTarget = Quaternion.LookRotation(directionToTarget);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, rotationToTarget, ChasingAngularSpeed * Time.deltaTime);
+            }
+
             if (Agent.remainingDistance < 0.1f)
             {
                 if (postStepPauseStartTime == 0f)

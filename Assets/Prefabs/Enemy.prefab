@@ -348,8 +348,8 @@ MonoBehaviour:
   ScreamingShakingSpeed: 50
   Speed: 7
   ChasingAngularSpeed: 360
-  Acceleration: 8
-  PostLookingToLastSeenDirectionPause: 1
+  Acceleration: 16
+  PostLookingToLastSeenDirectionPause: 0
   LookingAroundIterationNumber: 3
   DirectionEvaluationResolution: 45
   PostLookingAroundPause: 1
