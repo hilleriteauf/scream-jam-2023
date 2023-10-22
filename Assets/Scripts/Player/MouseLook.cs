@@ -70,19 +70,19 @@ public class MouseLook : MonoBehaviour
                 this.GetComponentInParent<PlayerInteraction>().torchCounterText.GetComponent<TMP_Text>().text = (int.Parse(this.GetComponentInParent<PlayerInteraction>().torchCounterText.GetComponent<TMP_Text>().text)-1).ToString();
                 torch.transform.parent = null;
                 torch = null;
-                // if (int.Parse(this.GetComponentInParent<PlayerInteraction>().torchCounterText.GetComponent<TMP_Text>().text) != 0)
-                // {
-                //     torch = Instantiate(torchPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
-                //     torch.transform.parent = transform;
-                //     torch.GetComponent<Rigidbody>().useGravity = false;
-                //     torch.GetComponent<Interactable>().IsInteractable = false;
-                //     torch.GetComponent<Rigidbody>().velocity = Vector3.zero;
-                //     torch.GetComponent<TorchInteract>().PlayerCamera = this.GetComponent<Camera>();
-                //     torch.GetComponent<TorchInteract>().Player = this.transform.parent.gameObject;
-                //     torch.GetComponent<TorchInteract>().torchPickUpPoint = this.transform.parent.gameObject.transform.Find("TorchPickUpPoint");
-                //     torch.transform.position = torch.GetComponent<TorchInteract>().torchPickUpPoint.transform.position;
-                //     torch.transform.rotation = torch.GetComponent<TorchInteract>().torchPickUpPoint.transform.rotation;
-                // }
+                if (int.Parse(this.GetComponentInParent<PlayerInteraction>().torchCounterText.GetComponent<TMP_Text>().text) != 0)
+                {
+                    torch = Instantiate(torchPrefab, GameObject.Find("TorchPickUpPoint").transform.position, Quaternion.identity);
+                    this.playeraudio = torch.GetComponent<AudioSource>();
+                    torch.transform.parent = transform;
+                    torch.GetComponent<Rigidbody>().useGravity = false;
+                    torch.GetComponent<Interactable>().IsInteractable = false;
+                    torch.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                    torch.GetComponent<TorchInteract>().Player = this.GetComponent<Camera>().gameObject;
+                    torch.GetComponent<TorchInteract>().torchPickUpPoint = GameObject.Find("TorchPickUpPoint").transform;
+                    torch.transform.position = torch.GetComponent<TorchInteract>().torchPickUpPoint.transform.position;
+                    torch.transform.rotation = torch.GetComponent<TorchInteract>().torchPickUpPoint.transform.rotation;
+                }
             }
         }
 
