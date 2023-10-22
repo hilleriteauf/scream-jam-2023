@@ -5,7 +5,7 @@ using UnityEngine;
 public class Map : MonoBehaviour, Interactable.IInteractionListener
 {
 
-    public void OnInteract()
+    public void OnInteract(Interactable interactable)
     {
         MapUI mapUI = FindObjectOfType<MapUI>();
         mapUI.mapObtained = true;

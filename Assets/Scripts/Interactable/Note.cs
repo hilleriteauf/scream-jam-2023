@@ -54,7 +54,7 @@ public class Note : MonoBehaviour, Interactable.IInteractionListener
             noteUI.Hide();
         }
     }
-    public void OnInteract()
+    public void OnInteract(Interactable interactable)
     {
         Debug.Log("noteUI is null: " + (noteUI == null).ToString());
         if (noteUI != null)

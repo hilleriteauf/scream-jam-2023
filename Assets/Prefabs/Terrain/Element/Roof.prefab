@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4446454987433372513}
   - component: {fileID: 334922703307224492}
   - component: {fileID: 1489984211815299539}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Roof
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,6 +114,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 9b82dcfe6f641ee40a89a53e1fa3d22a, type: 3}
       propertyPath: m_Name
       value: roof
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9b82dcfe6f641ee40a89a53e1fa3d22a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 9b82dcfe6f641ee40a89a53e1fa3d22a, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
