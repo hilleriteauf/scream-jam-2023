@@ -7,6 +7,8 @@ public class PlayerInteraction : MonoBehaviour
     public float distanceThreshold = 3.0f;
     public float angleThreshold = 30.0f;
 
+    public GameObject torchCounterText;
+
     private bool _canInteract = true;
     public bool CanInteract {
         get {
@@ -80,5 +82,6 @@ public class PlayerInteraction : MonoBehaviour
         }
 
         currentInteractable = bestInteractable;
+
     }
 }
