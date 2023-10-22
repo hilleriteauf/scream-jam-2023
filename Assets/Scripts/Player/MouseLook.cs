@@ -45,26 +45,27 @@ public class MouseLook : MonoBehaviour
         transform.localRotation = Quaternion.Euler(xRotation,0f,0f);
         playerBody.Rotate(Vector3.up * mouseX);
 
-
+        if (torch != null && Input.GetKey("f"))
+        {
+            prepareThrow = true;
+        } else
+        {
+            prepareThrow = false;
+        }
 
         if (prepareThrow == true)
         {
             throwCharge += Time.deltaTime;
         }
-        if (Input.GetKey("f"))
-        {
-            prepareThrow = true;
-        }
+
         if (Input.GetKeyUp("f"))
         {
-            if (prepareThrow == true)
+            if (torch != prepareThrow == true)
             {
                 Debug.Log("Throw with force " + throwCharge * throwForce);
                 torch.GetComponent<Rigidbody>().AddForce(transform.forward * throwCharge * throwForce);
                 // torch.transform.localRotation = Quaternion.FromToRotation(torch.transform.position, cam.transform.forward);
                 torch.GetComponent<Rigidbody>().useGravity = true;
-                prepareThrow = false;
-                throwCharge = 0f;
                 torch.GetComponent<Interactable>().IsInteractable = true;
                 this.playeraudio = null;
                 this.GetComponentInParent<PlayerInteraction>().torchCounterText.GetComponent<TMP_Text>().text = (int.Parse(this.GetComponentInParent<PlayerInteraction>().torchCounterText.GetComponent<TMP_Text>().text)-1).ToString();
@@ -84,6 +85,9 @@ public class MouseLook : MonoBehaviour
                     torch.transform.rotation = torch.GetComponent<TorchInteract>().torchPickUpPoint.transform.rotation;
                 }
             }
+
+            prepareThrow = false;
+            throwCharge = 0f;
         }
 
         // Playing a sound when the rotation speed is high enough
