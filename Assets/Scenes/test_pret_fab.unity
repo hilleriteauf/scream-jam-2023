@@ -13074,7 +13074,7 @@ PrefabInstance:
       value: "Ah, I've had enough of searching for this cursed lever. I only have
         one left to activate, and finally, I'll be able to find you. I'm so eager!
         I wonder what lies behind that door, I'll soon uncover it. I'm on my way,
-        Jade.\r"
+        Jade\r\r"
       objectReference: {fileID: 0}
     - target: {fileID: 7686440795489971551, guid: ab0120eb1420f8f4d9456ac53db694a9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14121,6 +14121,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2466438148294578754, guid: 9755b9f757f3f6d4f874a863bfa73a09, type: 3}
   m_PrefabInstance: {fileID: 1223362754}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &659158659
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 359309511361222732, guid: 7b7f32d67e541a848b5d6d4e15eee6ef, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -62.46084
+      objectReference: {fileID: 0}
+    - target: {fileID: 359309511361222732, guid: 7b7f32d67e541a848b5d6d4e15eee6ef, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.1562519
+      objectReference: {fileID: 0}
+    - target: {fileID: 359309511361222732, guid: 7b7f32d67e541a848b5d6d4e15eee6ef, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 55.757195
+      objectReference: {fileID: 0}
+    - target: {fileID: 359309511361222732, guid: 7b7f32d67e541a848b5d6d4e15eee6ef, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 359309511361222732, guid: 7b7f32d67e541a848b5d6d4e15eee6ef, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 359309511361222732, guid: 7b7f32d67e541a848b5d6d4e15eee6ef, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 359309511361222732, guid: 7b7f32d67e541a848b5d6d4e15eee6ef, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 359309511361222732, guid: 7b7f32d67e541a848b5d6d4e15eee6ef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 359309511361222732, guid: 7b7f32d67e541a848b5d6d4e15eee6ef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 359309511361222732, guid: 7b7f32d67e541a848b5d6d4e15eee6ef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4054381840114798534, guid: 7b7f32d67e541a848b5d6d4e15eee6ef, type: 3}
+      propertyPath: m_Name
+      value: Enemy (4)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7b7f32d67e541a848b5d6d4e15eee6ef, type: 3}
 --- !u!4 &663743840 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2393066825878658671, guid: 2616846389754fd4eacfc27b972b3b59, type: 3}
@@ -45842,11 +45899,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7509223220056900425, guid: ab0120eb1420f8f4d9456ac53db694a9, type: 3}
       propertyPath: noteContent
-      value: 'The last encounter with that monster left me sweating, and I was fortunate
-        to have taken a big step forward, but it''s truly exhausting. I''m terrifie,
-        but for you, I must persevere. Hold on, I''m on my way.
-
-'
+      value: The last encounter with that monster left me sweating, and I was fortunate
+        to have taken a big step forward, but it's truly exhausting. I'm terrifie,
+        but for you, I must persevere. Hold on, I'm on my way.
       objectReference: {fileID: 0}
     - target: {fileID: 7686440795489971551, guid: ab0120eb1420f8f4d9456ac53db694a9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -46088,3 +46143,4 @@ SceneRoots:
   - {fileID: 1499646433}
   - {fileID: 1816956753}
   - {fileID: 771471149}
+  - {fileID: 659158659}
