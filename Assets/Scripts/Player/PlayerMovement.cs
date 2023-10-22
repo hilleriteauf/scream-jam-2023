@@ -40,8 +40,11 @@ public class PlayerMovement : MonoBehaviour
         }
 
         Vector3 move = transform.right * x + transform.forward * z; // Move in the direction of the camera
+        
+        // Clamping the magnitude of the move vector to 1, so that the player can't move faster diagonally
+        Vector3 clamptedMove = Vector3.ClampMagnitude(move, 1f);
 
-        controller.Move(move * speed * Time.deltaTime); // Move the player
+        controller.Move(clamptedMove * speed * Time.deltaTime); // Move the player
         
     }
 }
