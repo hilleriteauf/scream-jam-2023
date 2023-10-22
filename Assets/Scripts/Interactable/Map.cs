@@ -11,8 +11,7 @@ public class Map : MonoBehaviour, Interactable.IInteractionListener
         mapUI.mapObtained = true;
 
         TipUI tipUI = FindObjectOfType<TipUI>();
-        Debug.Log("tipUI is null: " + (tipUI == null).ToString());
-        tipUI.Display(TipUI.Tip.Map, 3f);
+        tipUI.Display("You obtained a map!\nPress Tab to open it", 3f);
 
         gameObject.SetActive(false);
     }

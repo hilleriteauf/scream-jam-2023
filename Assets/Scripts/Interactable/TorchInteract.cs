@@ -28,29 +28,20 @@ public class TorchInteract : MonoBehaviour, Interactable.IInteractionListener
     public void OnInteract(Interactable interactable)
     {
         Debug.Log("Torch picked up");
-        if (int.Parse(Player.GetComponent<PlayerInteraction>().torchCounterText.GetComponent<TMP_Text>().text) == 0)
+        if (playerInteraction.torchCounter == 0)
         {   
-            Player.GetComponent<PlayerInteraction>().torchCounterText.GetComponent<TMP_Text>().text = (int.Parse(Player.GetComponent<PlayerInteraction>().torchCounterText.GetComponent<TMP_Text>().text)+1).ToString();
-            GameObject Torch = interactable.gameObject;
-            Torch.GetComponent<Interactable>().IsInteractable = false;
-            Torch.GetComponent<Rigidbody>().useGravity = false;
-            // this.GetComponent<Rigidbody>().isKinematic = true;
-            Torch.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            Torch.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-            Torch.transform.position = torchPickUpPoint.position;
-            Torch.transform.rotation = torchPickUpPoint.rotation;
-            Torch.transform.parent = Player.transform;
-            Player.GetComponent<MouseLook>().playeraudio = Torch.GetComponent<AudioSource>();
-            Player.GetComponent<MouseLook>().torch = Torch;
+            playerInteraction.torchCounter += 1;
+            Destroy(gameObject);
         } 
-        else if (int.Parse(Player.GetComponent<PlayerInteraction>().torchCounterText.GetComponent<TMP_Text>().text) >= 2)
+        else if (playerInteraction.torchCounter >= 2)
         {
-            Debug.Log("Torch inventory full !");
+            TipUI tipUI = FindObjectOfType<TipUI>();
+            tipUI.Display("You can only carry 2 torches at a time", 3f);
             return;
         }
         else
         {
-            Player.GetComponent<PlayerInteraction>().torchCounterText.GetComponent<TMP_Text>().text = (int.Parse(Player.GetComponent<PlayerInteraction>().torchCounterText.GetComponent<TMP_Text>().text)+1).ToString();
+            playerInteraction.torchCounter += 1;
             interactable.gameObject.GetComponent<Interactable>().IsInteractable = false;
             Destroy(interactable.gameObject);
         }

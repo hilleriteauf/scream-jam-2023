@@ -7,20 +7,16 @@ public class TorchCounter : MonoBehaviour
 {
     public TextMeshProUGUI text;
 
-    // Start is called before the first frame update
-    void Start()
+    private PlayerInteraction playerInteraction;
+
+    void Awake()
     {
-        
+        playerInteraction = FindObjectOfType<PlayerInteraction>();        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    public void SetCount(int count)
-    {
-        text.text = count.ToString();
+        text.text = playerInteraction.torchCounter.ToString();
     }
 }

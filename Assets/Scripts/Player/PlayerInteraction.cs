@@ -7,7 +7,7 @@ public class PlayerInteraction : MonoBehaviour
     public float distanceThreshold = 3.0f;
     public float angleThreshold = 30.0f;
 
-    public GameObject torchCounterText;
+    public int torchCounter;
 
     private bool _canInteract = true;
     public bool CanInteract {
@@ -24,10 +24,12 @@ public class PlayerInteraction : MonoBehaviour
 
     private Interactable currentInteractable = null;
 
+    private InteractKeyUI interactKeyUI;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        interactKeyUI = FindObjectOfType<InteractKeyUI>();
     }
 
     // Update is called once per frame
@@ -76,12 +78,8 @@ public class PlayerInteraction : MonoBehaviour
             bestInteractable.SetInPlayerFocus(true);
         }
 
-        if ((bestInteractable == null) != (currentInteractable == null))
-        {
-            FindObjectOfType<InteractKeyUI>().IsVisible = bestInteractable != null;
-        }
-
         currentInteractable = bestInteractable;
 
+        interactKeyUI.IsVisible = currentInteractable != null;
     }
 }

@@ -22,9 +22,17 @@ public class MouseLook : MonoBehaviour
     public float throwForce = 600f;
     private bool prepareThrow = false;
     private float throwCharge = 0f;
+
+    // Last time the player threw a torch, or 0 if he is holding one
+    private float lastThrowTime = -1f;
+
+    private PlayerInteraction playerInteraction;
+
     // Start is called before the first frame update
     void Start()
     {
+        playerInteraction = FindObjectOfType<PlayerInteraction>();
+
         Cursor.lockState = CursorLockMode.Locked; // Locks the cursor to the center of the screen
         rotationSpeedDownTreshold = rotationSpeedHighTreshold - 5f;
 
@@ -49,43 +57,7 @@ public class MouseLook : MonoBehaviour
         transform.localRotation = Quaternion.Euler(xRotation,0f,0f);
         playerBody.Rotate(Vector3.up * mouseX);
 
-        if (torch != null && Input.GetKey("f"))
-        {
-            prepareThrow = true;
-        } else
-        {
-            prepareThrow = false;
-        }
-
-        if (prepareThrow == true)
-        {
-            throwCharge += Time.deltaTime;
-        }
-
-        if (Input.GetKeyUp("f"))
-        {
-            if (torch != prepareThrow == true)
-            {
-                Debug.Log("Throw with force " + throwCharge * throwForce);
-                torch.GetComponent<Rigidbody>().AddForce(transform.forward * throwCharge * throwForce);
-                // torch.transform.localRotation = Quaternion.FromToRotation(torch.transform.position, cam.transform.forward);
-                torch.GetComponent<Rigidbody>().useGravity = true;
-                torch.GetComponent<Interactable>().IsInteractable = true;
-                this.playeraudio = null;
-                this.GetComponentInParent<PlayerInteraction>().torchCounterText.GetComponent<TMP_Text>().text = (int.Parse(this.GetComponentInParent<PlayerInteraction>().torchCounterText.GetComponent<TMP_Text>().text)-1).ToString();
-                torch.transform.parent = null;
-                torch = null;
-                if (int.Parse(this.GetComponentInParent<PlayerInteraction>().torchCounterText.GetComponent<TMP_Text>().text) != 0)
-                {
-                    torch = Instantiate(torchPrefab, GameObject.Find("TorchPickUpPoint").transform.position, Quaternion.identity);
-                    this.playeraudio = torch.GetComponent<AudioSource>();
-                    TorchConfiguration();
-                }
-            }
-
-            prepareThrow = false;
-            throwCharge = 0f;
-        }
+        HandleTorchInput();
 
         // Playing a sound when the rotation speed is high enough
         if (playeraudio != null)
@@ -102,6 +74,78 @@ public class MouseLook : MonoBehaviour
                 istriggered = false;
             }
         }
+    }
+
+    private void HandleTorchInput()
+    {
+        if (torch != null && Input.GetKey(KeyCode.F))
+        {
+            prepareThrow = true;
+        }
+        else
+        {
+            prepareThrow = false;
+        }
+
+        if (prepareThrow == true)
+        {
+            throwCharge += Time.deltaTime;
+        }
+
+        if (Input.GetKeyUp(KeyCode.F))
+        {
+            bool torchPullOut = false;
+
+            // Pull out a torch if the player is not holding one and has one in his inventory
+            if (torch == null && playerInteraction.torchCounter > 0)
+            {
+                PullOutTorch();
+                torchPullOut = true;
+            }
+
+            // Throw the torch the player is holding one
+            if (torch != null && !torchPullOut)
+            {
+                ThrowTorch();
+            }
+
+            prepareThrow = false;
+            throwCharge = 0f;
+        }
+
+        // Display a tip on how to pull out a torch if the player is not holding one and has one in his inventory
+        if (lastThrowTime != -1f && Time.time - lastThrowTime > 2f && playerInteraction.torchCounter > 0)
+        {
+            TipUI tipUI = FindObjectOfType<TipUI>();
+            if (tipUI != null)
+            {
+                tipUI.Display("Press [F] to pull out your torch", 2f);
+            }
+            lastThrowTime = -1f;
+        }
+    }
+
+    private void PullOutTorch()
+    {
+        Debug.Log("Torch pulled out");
+        torch = Instantiate(torchPrefab, GameObject.Find("TorchPickUpPoint").transform.position, Quaternion.identity);
+        this.playeraudio = torch.GetComponent<AudioSource>();
+        TorchConfiguration();
+        playerInteraction.torchCounter -= 1;
+        lastThrowTime = -1f;
+    }
+
+    private void ThrowTorch()
+    {
+        Debug.Log("Throw with force " + throwCharge * throwForce);
+        torch.GetComponent<Rigidbody>().AddForce(transform.forward * throwCharge * throwForce);
+        // torch.transform.localRotation = Quaternion.FromToRotation(torch.transform.position, cam.transform.forward);
+        torch.GetComponent<Rigidbody>().useGravity = true;
+        torch.GetComponent<Interactable>().IsInteractable = true;
+        this.playeraudio = null;
+        torch.transform.parent = null;
+        torch = null;
+        lastThrowTime = Time.time;
     }
 
     private void TorchConfiguration()
