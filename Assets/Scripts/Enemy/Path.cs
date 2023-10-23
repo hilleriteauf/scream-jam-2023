@@ -63,6 +63,7 @@ public class Path : MonoBehaviour
         return nodes[index];
     }
 
+#if UNITY_EDITOR
     // Draw the path in the editor
     public void OnDrawGizmos()
     {
@@ -101,4 +102,5 @@ public class Path : MonoBehaviour
         Gizmos.DrawRay((from + to) / 2, Quaternion.Euler(0, 135, 0) * (to - from).normalized * 0.5f);
         Gizmos.DrawRay((from + to) / 2, Quaternion.Euler(0, -135, 0) * (to - from).normalized * 0.5f);
     }
+#endif
 }
