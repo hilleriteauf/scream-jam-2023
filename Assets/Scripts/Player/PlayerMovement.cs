@@ -53,6 +53,11 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
+    private void OnDisable()
+    {
+        playeraudio.Stop();
+    }
+
     private void FixedUpdate(){
         if (controller.velocity.magnitude > 0){
             IsMoving = true;

@@ -1,7 +1,9 @@
 ﻿using Assets.Scripts.Enemy;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts.Player
@@ -20,6 +22,9 @@ namespace Assets.Scripts.Player
 
         public string MenuSceneName;
 
+        public List<string> winMessages;
+        public List<float> winMessagesDurations;
+
         // Seconds left before the player dies
         public float RemainingTime
         {
@@ -35,6 +40,9 @@ namespace Assets.Scripts.Player
         private EnemyChasingController enemyKillingPlayer;
 
         private bool alive = true;
+        private float killTime = -1f;
+
+        private BoxCollider endCollider;
 
         private void OnEnable()
         {
@@ -44,11 +52,23 @@ namespace Assets.Scripts.Player
         void Awake()
         {
             safezoneDetector = FindObjectOfType<PlayerSafezoneDetector>();
+            endCollider = GameObject.FindGameObjectWithTag("EndCollider").GetComponent<BoxCollider>();
         }
 
         // Update is called once per frame
         void Update()
         {
+            if (killTime > -1f && Time.time - killTime > 0.5f)
+            {
+                lightOff();
+            }
+
+            if (alive && endCollider != null && endCollider.bounds.Contains(transform.position))
+            {
+                WinAnimation();
+                return;
+            }
+
             if (killingAnimation)
             {
                 UpdateKillingAnimation();
@@ -101,6 +121,17 @@ namespace Assets.Scripts.Player
             enemyKillingPlayer = enemy;
         }
 
+        public void WinAnimation()
+        {
+            alive = false;
+            killTime = Time.time;
+
+            BlackScreenUI blackScreenUI = FindObjectOfType<BlackScreenUI>();
+            blackScreenUI.Display(winMessages, winMessagesDurations, false, true, () => { SceneManager.LoadScene(MenuSceneName); return null; });
+
+            fixeEverything();
+        }
+
         public void KillAnimationEnd(string killReason)
         {
             alive = false;
@@ -117,6 +148,25 @@ namespace Assets.Scripts.Player
             foreach (EnemyController enemy in enemies)
             {
                 enemy.DisableEnemy();
+            }
+        }
+
+        private void fixeEverything()
+        {
+            FindObjectOfType<PlayerMovement>().enabled = false;
+            FindObjectOfType<MouseLook>().enabled = false;
+            FindObjectOfType<PlayerInteraction>().enabled = false;
+
+            DisableAllEnemies();
+        }
+
+        private void lightOff()
+        {
+            Light[] lights = FindObjectsOfType<Light>();
+
+            foreach (Light light in lights)
+            {
+                light.enabled = false;
             }
         }
     }

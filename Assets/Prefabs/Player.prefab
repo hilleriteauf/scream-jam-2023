@@ -239,6 +239,23 @@ MonoBehaviour:
   timerStartTime: 0
   killingAnimationAngularVelocity: 1440
   MenuSceneName: MenuScene
+  winMessages:
+  - 'After countless trials and sacrifices, Alec finally managed to save Elara from
+    the clutches of the demon. Their reunion was filled with deep emotion, and their
+    hearts overflowed with immeasurable joy. '
+  - They returned to the surface, emerging from the infernal darkness, hand in hand.
+    The light of day embraced them, and the love that bound them was stronger than
+    ever. The couple returned home, grateful for every precious moment they had shared,
+    knowing that their love had withstood the darkest trials.
+  - Alec is profoundly grateful to the person who left the notes, who had helped
+    him in an extraordinary way. He knows that without those notes, he would have
+    perished, just like the author of those notes. Alec felt a deep regret for not
+    having found Jade to tell her that her beloved had sacrificed everything to find
+    her.
+  winMessagesDurations:
+  - 10
+  - 15
+  - 15
 --- !u!82 &1795064169611053781
 AudioSource:
   m_ObjectHideFlags: 0

@@ -47,5 +47,6 @@ public class EnemyController : MonoBehaviour
         isEnabled = false;
         EnemyPatrol.StopPatrolling();
         EnemyChasingController.StopChasing();
+        GetComponent<EnemySound>().enabled = false;
     }
 }
