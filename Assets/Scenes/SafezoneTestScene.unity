@@ -2090,6 +2090,10 @@ PrefabInstance:
       propertyPath: loop
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6759396336681124441, guid: 7b7f32d67e541a848b5d6d4e15eee6ef, type: 3}
+      propertyPath: KillingDistance
+      value: 1.75
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -14165,11 +14169,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3283847155470743641, guid: d68bfd3c33d27b24c85ba20c089f6c01, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3820359705109697011, guid: d68bfd3c33d27b24c85ba20c089f6c01, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3833784362286764654, guid: d68bfd3c33d27b24c85ba20c089f6c01, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833784362286764654, guid: d68bfd3c33d27b24c85ba20c089f6c01, type: 3}
+      propertyPath: introMessages.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833784362286764654, guid: d68bfd3c33d27b24c85ba20c089f6c01, type: 3}
+      propertyPath: introMessageDurations.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6000717999133584977, guid: d68bfd3c33d27b24c85ba20c089f6c01, type: 3}
       propertyPath: m_Name
