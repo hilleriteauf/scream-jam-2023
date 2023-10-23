@@ -8,7 +8,7 @@ public class MapUI : MonoBehaviour
 
     public bool mapObtained = false;
 
-    private bool mapOpened = false;
+    public bool MapOpened { get; private set; } = false;
     private PlayerInteraction playerInteraction;
 
     // Start is called before the first frame update
@@ -25,17 +25,17 @@ public class MapUI : MonoBehaviour
             return;
         }
 
-        if (!mapOpened && Input.GetKey(KeyCode.Tab) && playerInteraction.CanInteract)
+        if (!MapOpened && Input.GetKey(KeyCode.Tab) && playerInteraction.CanInteract)
         {
             mapUI.SetActive(true);
-            mapOpened = true;
+            MapOpened = true;
             playerInteraction.CanInteract = false;
         }
 
-        if (mapOpened && !Input.GetKey(KeyCode.Tab))
+        if (MapOpened && !Input.GetKey(KeyCode.Tab))
         {
             mapUI.SetActive(false);
-            mapOpened = false;
+            MapOpened = false;
             playerInteraction.CanInteract = true;
         }
     }
