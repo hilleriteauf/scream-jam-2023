@@ -340,7 +340,7 @@ namespace Assets.Scripts.Enemy
             if (Time.time - stepStartTime > KillingShakingDuration)
             {
                 PlayerLife playerLife = FindObjectOfType<PlayerLife>();
-                playerLife.KillAnimationEnd();
+                playerLife.KillAnimationEnd("You've been caught");
                 step = Step.Disabled;
                 return;
             }

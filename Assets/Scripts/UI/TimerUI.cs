@@ -25,6 +25,11 @@ public class TimerUI : MonoBehaviour
 
     string FormatTime(float time)
     {
+        if (time < 0)
+        {
+            time = 0;
+        }
+
         int minutes = Mathf.FloorToInt(time / 60f);
         int seconds = Mathf.FloorToInt(time - minutes * 60);
         return string.Format("{0:0}:{1:00}", minutes, seconds);

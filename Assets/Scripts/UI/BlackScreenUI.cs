@@ -184,12 +184,14 @@ public class BlackScreenUI : MonoBehaviour
         {
             currentMessageDuration = messageDurations[currentMessageIndex];
             currentMessageStartTime = Time.time + (skipFadeIn ? 0f : backgroundFadeDuration) + beforeAndAfterMessagesPauseDuration;
+            text.color = new Color(text.color.r, text.color.g, text.color.b, 0f);
             text.gameObject.SetActive(true);
         } else
         {
             text.gameObject.SetActive(false);
         }
 
+        background.color = new Color(background.color.r, background.color.g, background.color.b, 0f);
         background.gameObject.SetActive(true);
 
         if (allowSkip)

@@ -34,6 +34,8 @@ namespace Assets.Scripts.Player
         private bool killingAnimation = false;
         private EnemyChasingController enemyKillingPlayer;
 
+        private bool alive = true;
+
         private void OnEnable()
         {
             timerStartTime = Time.time;
@@ -59,6 +61,16 @@ namespace Assets.Scripts.Player
             } else
             {
                 Health -= Time.deltaTime / lifeExpectancyOutsideSafezone;
+            }
+
+            if (alive && RemainingTime <= 0f)
+            {
+                KillAnimationEnd("You ran out of time");
+            }
+
+            if (alive && Health <= 0f)
+            {
+                KillAnimationEnd("The abyss drained all your life");
             }
         }
 
@@ -89,10 +101,12 @@ namespace Assets.Scripts.Player
             enemyKillingPlayer = enemy;
         }
 
-        public void KillAnimationEnd()
+        public void KillAnimationEnd(string killReason)
         {
+            alive = false;
+
             BlackScreenUI blackScreenUI = FindObjectOfType<BlackScreenUI>();
-            blackScreenUI.Display(new List<string> { "Game Over" }, new List<float> { 2f }, false, true, () => { SceneManager.LoadScene(MenuSceneName); return null; });
+            blackScreenUI.Display(new List<string> { "Game Over", killReason }, new List<float> { 2f, 2f }, false, true, () => { SceneManager.LoadScene(MenuSceneName); return null; });
 
             DisableAllEnemies();
         }
