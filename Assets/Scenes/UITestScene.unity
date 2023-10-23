@@ -644,10 +644,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 5113593644149321192, guid: 88cd63aa65ec168479c204d8fb5fe012, type: 3}
-      propertyPath: m_Radius
-      value: 0.75
-      objectReference: {fileID: 0}
     - target: {fileID: 6493481164175958029, guid: 88cd63aa65ec168479c204d8fb5fe012, type: 3}
       propertyPath: m_Layer
       value: 3

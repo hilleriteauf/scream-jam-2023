@@ -149,7 +149,9 @@ public class MouseLook : MonoBehaviour
         // torch.transform.localRotation = Quaternion.FromToRotation(torch.transform.position, cam.transform.forward);
         torch.GetComponent<Rigidbody>().useGravity = true;
         torch.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+        torch.GetComponent<BoxCollider>().isTrigger = false;
         torch.GetComponent<Interactable>().IsInteractable = true;
+        torch.GetComponent<TorchInteract>().Player = null;
         this.playeraudio = null;
         torch.transform.parent = null;
         torch = null;
@@ -160,8 +162,9 @@ public class MouseLook : MonoBehaviour
     {
         torch.GetComponent<Rigidbody>().useGravity = false;
         torch.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-        torch.GetComponent<Interactable>().IsInteractable = false;
         torch.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        torch.GetComponent<BoxCollider>().isTrigger = true;
+        torch.GetComponent<Interactable>().IsInteractable = false;
         torch.GetComponent<TorchInteract>().Player = this.GetComponent<Camera>().gameObject;
         torch.GetComponent<TorchInteract>().torchPickUpPoint = GameObject.Find("TorchPickUpPoint").transform;
         torch.transform.parent = transform;

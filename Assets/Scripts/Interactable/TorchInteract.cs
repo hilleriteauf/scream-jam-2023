@@ -14,7 +14,6 @@ public class TorchInteract : MonoBehaviour, Interactable.IInteractionListener
 
     void Awake()
     {
-        Player = GameObject.Find("Main Camera");
         playerInteraction = FindObjectOfType<PlayerInteraction>();
         torchPickUpPoint = GameObject.Find("TorchPickUpPoint").transform;
     }
