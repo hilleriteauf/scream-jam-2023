@@ -33,7 +33,7 @@ public class EnemyVision : MonoBehaviour
         if (newPlayerInSight != PlayerInSight)
         {
             PlayerInSight = newPlayerInSight;
-            Debug.Log("PlayerInSight : " + PlayerInSight);
+            // Debug.Log("PlayerInSight : " + PlayerInSight);
         }
         
     }

@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public float dashSpeed = 32f;
 
     public AudioSource playeraudio;
-    public AudioClip woodwalk;
+    public AudioClip DashSound;
     bool IsMoving = false;
 
     private float lastDash = 0f;
@@ -34,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
         // Dash trigger
         if (Input.GetKeyDown(KeyCode.LeftShift) && (Time.time - lastDash > dashDuration))
         {
+            playeraudio.PlayOneShot(DashSound);
             lastDash = Time.time;
         }
 
