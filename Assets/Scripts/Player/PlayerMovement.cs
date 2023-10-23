@@ -8,7 +8,10 @@ public class PlayerMovement : MonoBehaviour
 
     public float walkingSpeed = 12f;
 
+    public float DashConstantCooldown = 5.5f;
     public float dashDuration = 0.25f;
+    private float dashCoolDown = 0f;
+    private  bool isCooldown = false;
     public float dashSpeed = 32f;
 
     public AudioSource playeraudio;
@@ -32,8 +35,10 @@ public class PlayerMovement : MonoBehaviour
         float speed = walkingSpeed;
 
         // Dash trigger
-        if (Input.GetKeyDown(KeyCode.LeftShift) && (Time.time - lastDash > dashDuration))
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !isCooldown)
         {
+            isCooldown = true;
+            dashCoolDown = DashConstantCooldown;
             playeraudio.PlayOneShot(DashSound);
             lastDash = Time.time;
         }
@@ -67,6 +72,16 @@ public class PlayerMovement : MonoBehaviour
         }
         else {
             playeraudio.Stop();
+        }
+        coolDownhappening();
+    }
+    public void coolDownhappening()
+    {
+        dashCoolDown -= Time.deltaTime;
+        if (dashCoolDown <= 0)
+        {
+            dashCoolDown = 0;
+            isCooldown = false;
         }
     }
 }
