@@ -442,7 +442,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1200, y: 200}
+  m_SizeDelta: {x: 1500, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2354350337918386529
 GameObject:
@@ -502,13 +502,20 @@ MonoBehaviour:
   background: {fileID: 6034342623800361560}
   text: {fileID: 9141982608857760854}
   introMessages:
-  - Somebody once told me
-  - The world is gonna roll me
-  - I ain't the sharpest tool in the shed ...
+  - The life of our hero, Alec, took a dramatic turn when his wife, Elara, was abducted
+    by a demon who ruled the abysses of hell. Alec couldn't bear to live without
+    her, and his determination to rescue her led him on an epic quest.
+  - After months of exhausting searching, Alec finally discovered the location of
+    the gates to hell, guarded by ancient demonic sentinels. Determined to reunite
+    with Elara at any cost, he prepared himself for the ultimate trial.
+  - Armed with courage and fueled by his love for Elara, Alec ventured into the dark
+    underground tunnels that led directly into the depths of hell. He swore not to
+    emerge from the infernal darkness until he had saved his beloved and brought
+    her back into the light.
   introMessageDurations:
-  - 3
-  - 3
-  - 3
+  - 10
+  - 10
+  - 12
   introSkipFadeIn: 1
   introSkipFadeOut: 1
   introNextSceneName: test_pret_fab
@@ -728,7 +735,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You died
+  m_text: The life of our hero, Alec, took a dramatic turn when his wife, Elara,
+    was abducted by a demon who ruled the abysses of hell. Alec couldn't bear to
+    live without her, and his determination to rescue her led him on an epic quest.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
