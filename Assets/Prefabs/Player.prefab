@@ -194,6 +194,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 5113593644149321192}
   walkingSpeed: 6
+  DashConstantCooldown: 5.5
   dashDuration: 0.25
   dashSpeed: 16
   playeraudio: {fileID: 1795064169611053781}
@@ -363,7 +364,7 @@ GameObject:
   - component: {fileID: 7060458765466802387}
   - component: {fileID: 7712425325954660636}
   - component: {fileID: 8775876833069466897}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
