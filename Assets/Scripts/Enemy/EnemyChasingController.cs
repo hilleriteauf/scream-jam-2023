@@ -51,7 +51,7 @@ namespace Assets.Scripts.Enemy
 
         private PlayerLightDetector playerLightDetector;
 
-        private Step _step = Step.Disabled;
+        public Step _step = Step.Disabled;
         private Step step
         {
             get { return _step; }
@@ -102,7 +102,7 @@ namespace Assets.Scripts.Enemy
         void Update()
         {
 
-            //Debug.Log("Step: " + step.ToString());
+            ////Debug.Log("Step: " + step.ToString());
 
             if (!Enabled)
             {
@@ -163,7 +163,7 @@ namespace Assets.Scripts.Enemy
 
             float distanceToTarget = Vector3.Distance(transform.position, EnemyVision.LastSeenPosition);
 
-            Debug.Log("Distance to target : " + distanceToTarget);
+            //Debug.Log("Distance to target : " + distanceToTarget);
             
             if (EnemyVision.PlayerInSight && distanceToTarget < KillingDistance)
             {
@@ -221,7 +221,7 @@ namespace Assets.Scripts.Enemy
         private void UpdateLookingAround()
         {
             float angle = Quaternion.Angle(transform.rotation, lookingAroundRotationTarget);
-            //Debug.Log("Angle : " + angle);
+            ////Debug.Log("Angle : " + angle);
             if (angle < 0.1f)
             {
                 if (postStepPauseStartTime == 0f)
@@ -311,7 +311,7 @@ namespace Assets.Scripts.Enemy
 
             lookingAroundDirection = scores[0] > scores[1] ? 1 : -1;
             int directionArrayIndex = lookingAroundDirection == 1 ? 0 : 1;
-            //Debug.Log("Looking around direction : " + lookingAroundDirection);
+            ////Debug.Log("Looking around direction : " + lookingAroundDirection);
 
             float angleToRotate = 0f;
             if (firstIntrestingAngle[directionArrayIndex] == -1)
@@ -321,7 +321,7 @@ namespace Assets.Scripts.Enemy
             {
                 angleToRotate = firstIntrestingAngle[(directionArrayIndex + 1) % 2];
             }
-            //Debug.Log("Angle to rotate : " + angleToRotate);
+            ////Debug.Log("Angle to rotate : " + angleToRotate);
             lookingAroundRotationTarget = Quaternion.Euler(0f, angleToRotate, 0f) * transform.rotation;
             //Debug.DrawRay(transform.position, lookingAroundRotationTarget * Vector3.forward * 10, Color.green, 5f);
         }
@@ -353,7 +353,7 @@ namespace Assets.Scripts.Enemy
         }
 
         // Different steps of the chasing behaviour
-        private enum Step
+        public enum Step
         {
             Disabled,
             Screaming,
