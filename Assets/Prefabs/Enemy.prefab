@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37e9d5658a57e1c4fbdb970b9a4d0be7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FieldOfViewAngle: 110
+  FieldOfViewAngle: 145
 --- !u!114 &3615559088650728239
 MonoBehaviour:
   m_ObjectHideFlags: 0
