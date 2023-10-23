@@ -26,6 +26,7 @@ namespace Assets.Scripts.Enemy
 
         }
 
+#if UNITY_EDITOR
         // Draw the path node in the editor
         public void OnDrawGizmos()
         {
@@ -57,5 +58,6 @@ namespace Assets.Scripts.Enemy
                 Gizmos.DrawLine(to, arrowHead2);
             }
         }
+#endif
     }
 }
