@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -22,7 +23,8 @@ public class Menu : MonoBehaviour
 
     public void OnPlayButton()
     {
-        SceneManager.LoadScene(PlaySceneName);
+        BlackScreenUI blackScreenUI = FindObjectOfType<BlackScreenUI>();
+        blackScreenUI.Display(new List<string>(), new List<float>(), false, true, () => { SceneManager.LoadScene(PlaySceneName); return null; }, false);
     }
 
     public void OnCreditsButton()
