@@ -503,14 +503,14 @@ MonoBehaviour:
   text: {fileID: 9141982608857760854}
   introMessages:
   - The life of our hero, Alec, took a dramatic turn when his wife, Elara, was abducted
-    by a demon who ruled the abysses of hell. Alec couldn't bear to live without
+    by a demon who ruled the abysses of hell.<br><br>Alec couldn't bear to live without
     her, and his determination to rescue her led him on an epic quest.
   - After months of exhausting searching, Alec finally discovered the location of
-    the gates to hell, guarded by ancient demonic sentinels. Determined to reunite
-    with Elara at any cost, he prepared himself for the ultimate trial.
+    the gates to hell, guarded by ancient demonic sentinels.<br><br>Determined to
+    reunite with Elara at any cost, he prepared himself for the ultimate trial.
   - Armed with courage and fueled by his love for Elara, Alec ventured into the dark
-    underground tunnels that led directly into the depths of hell. He swore not to
-    emerge from the infernal darkness until he had saved his beloved and brought
+    underground tunnels that led directly into the depths of hell.<br><br>He swore
+    not to emerge from the infernal darkness until he had saved his beloved and brought
     her back into the light.
   introMessageDurations:
   - 10

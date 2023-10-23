@@ -35020,9 +35020,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4134248626721510773, guid: 88cd63aa65ec168479c204d8fb5fe012, type: 3}
+      propertyPath: winMessages.Array.data[0]
+      value: 'After countless trials and sacrifices, Alec finally managed to save
+        Elara from the clutches of the demon.<br><br>Their reunion was filled with
+        deep emotion, and their hearts overflowed with immeasurable joy. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134248626721510773, guid: 88cd63aa65ec168479c204d8fb5fe012, type: 3}
+      propertyPath: winMessages.Array.data[1]
+      value: They returned to the surface, emerging from the infernal darkness, hand
+        in hand.<br><br>The light of day embraced them, and the love that bound them
+        was stronger than ever.<br><br>The couple returned home, grateful for every
+        precious moment they had shared, knowing that their love had withstood the
+        darkest trials.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134248626721510773, guid: 88cd63aa65ec168479c204d8fb5fe012, type: 3}
+      propertyPath: winMessages.Array.data[2]
+      value: Alec is profoundly grateful to the person who left the notes, who had
+        helped him in an extraordinary way.<br><br>He knows that without those notes,
+        he would have perished, just like the author of those notes.<br><br>Alec
+        felt a deep regret for not having found Jade to tell her that her beloved
+        had sacrificed everything to find her.
+      objectReference: {fileID: 0}
     - target: {fileID: 9138079418563391617, guid: 88cd63aa65ec168479c204d8fb5fe012, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -61.5
       objectReference: {fileID: 0}
     - target: {fileID: 9138079418563391617, guid: 88cd63aa65ec168479c204d8fb5fe012, type: 3}
       propertyPath: m_LocalPosition.y
@@ -35030,7 +35052,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9138079418563391617, guid: 88cd63aa65ec168479c204d8fb5fe012, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 75.1
       objectReference: {fileID: 0}
     - target: {fileID: 9138079418563391617, guid: 88cd63aa65ec168479c204d8fb5fe012, type: 3}
       propertyPath: m_LocalRotation.w
