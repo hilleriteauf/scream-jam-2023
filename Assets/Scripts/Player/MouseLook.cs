@@ -16,6 +16,10 @@ public class MouseLook : MonoBehaviour
     public AudioSource playeraudio;
     public AudioClip[] playeraudioClips;
     public float rotationSpeedHighTreshold = 25f;
+
+    public float torchThrowForceMultiplier = 1f;
+    public float maxTorchThrowForce = 5f;
+
     private float rotationSpeedDownTreshold;
     private float xRotation = 0f;
     private bool istriggered = false;
@@ -89,7 +93,10 @@ public class MouseLook : MonoBehaviour
 
         if (prepareThrow == true)
         {
-            throwCharge += Time.deltaTime;
+            if (throwCharge < maxTorchThrowForce)
+            {
+                throwCharge += Time.deltaTime * torchThrowForceMultiplier;
+            }
         }
 
         if (Input.GetKeyUp(KeyCode.F))
@@ -141,6 +148,7 @@ public class MouseLook : MonoBehaviour
         torch.GetComponent<Rigidbody>().AddForce(transform.forward * throwCharge * throwForce);
         // torch.transform.localRotation = Quaternion.FromToRotation(torch.transform.position, cam.transform.forward);
         torch.GetComponent<Rigidbody>().useGravity = true;
+        torch.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
         torch.GetComponent<Interactable>().IsInteractable = true;
         this.playeraudio = null;
         torch.transform.parent = null;
@@ -151,6 +159,7 @@ public class MouseLook : MonoBehaviour
     private void TorchConfiguration()
     {
         torch.GetComponent<Rigidbody>().useGravity = false;
+        torch.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         torch.GetComponent<Interactable>().IsInteractable = false;
         torch.GetComponent<Rigidbody>().velocity = Vector3.zero;
         torch.GetComponent<TorchInteract>().Player = this.GetComponent<Camera>().gameObject;
