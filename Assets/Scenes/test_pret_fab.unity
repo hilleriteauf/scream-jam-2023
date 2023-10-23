@@ -16536,6 +16536,18 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 621f014d6f9ef374992f79d8710ad444, type: 3}
     - target: {fileID: 3283847155470743641, guid: d68bfd3c33d27b24c85ba20c089f6c01, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833784362286764654, guid: d68bfd3c33d27b24c85ba20c089f6c01, type: 3}
+      propertyPath: introSkipFadeIn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833784362286764654, guid: d68bfd3c33d27b24c85ba20c089f6c01, type: 3}
+      propertyPath: introMessages.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833784362286764654, guid: d68bfd3c33d27b24c85ba20c089f6c01, type: 3}
+      propertyPath: introMessageDurations.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6000717999133584977, guid: d68bfd3c33d27b24c85ba20c089f6c01, type: 3}

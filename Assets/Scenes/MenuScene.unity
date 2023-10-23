@@ -2107,7 +2107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MenuPanel: {fileID: 1798767308}
   CreditsPanel: {fileID: 602969022}
-  PlaySceneName: test_pret_fab
+  PlaySceneName: IntroScene
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

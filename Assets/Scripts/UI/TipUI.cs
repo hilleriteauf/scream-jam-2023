@@ -22,15 +22,18 @@ public class TipUI : MonoBehaviour
         if ((Time.time - lastDisplayTime) > displayDuration)
         {
             tipText.gameObject.SetActive(false);
+        } else if (Time.time > lastDisplayTime)
+        {
+            tipText.gameObject.SetActive(true);
         }
     }
 
-    public void Display(string text, float duration)
+    public void Display(string text, float duration, float displayLaterTime = 0f)
     {
         tipText.text = text;
-        lastDisplayTime = Time.time;
+        lastDisplayTime = Time.time + displayLaterTime;
         displayDuration = duration;
-        tipText.gameObject.SetActive(true);
+        tipText.gameObject.SetActive(displayLaterTime == 0f);
     }
 
 }

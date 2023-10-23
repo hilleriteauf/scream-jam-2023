@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/test_pret_fab.unity
     guid: b5c12135f7cdf0144b7bcea37e3d25cc
+  - enabled: 1
+    path: Assets/Scenes/IntroScene.unity
+    guid: f7fb152d958d6984d98f1feff842586f
   m_configObjects: {}
